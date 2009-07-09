@@ -232,6 +232,11 @@ VALUE FlixEngine_set_png_filter(VALUE self, VALUE filters)
   if(TYPE(height) == T_FIXNUM) {
     CHECKSC( Flix2_FilterSetParam(filter,FE2_PNGEX_HEIGHT, NUM2INT(height)));
   }
+  
+  VALUE auto_export = rb_hash_aref(filters, ID2SYM(rb_intern("auto_export")));
+  if(TYPE(auto_export) == T_FIXNUM) {
+    CHECKSC( Flix2_FilterSetParam(filter,FE2_PNGEX_AUTO_EXPORT_COUNT, NUM2INT(auto_export)));
+  }
 
   VALUE export_time = rb_hash_aref(filters, ID2SYM(rb_intern("export_time")));
   if(TYPE(export_time) == T_STRING) {
